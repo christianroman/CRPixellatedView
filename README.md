@@ -88,6 +88,18 @@ Requirements
 ----------
 * iOS 6.0 or higher for Objective-C.
 
+Bugs
+----------
+* Working well just with square images :(
+
+Contributing
+----------
+Anyone who would like to contribute to the project is more than welcome.
+
+* Fork this repo
+* Make your changes
+* Submit a pull request
+
 ## License
 CRPixellatedView is released under the MIT license. See
 [LICENSE](https://github.com/chroman/CRPixellatedView/blob/master/LICENSE).
