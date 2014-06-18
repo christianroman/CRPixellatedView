@@ -80,8 +80,6 @@ Example
 pixellatedView.reverse = YES; // Reverse effect
 ```
 ![CRPixellatedView-demo2](http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView_demo2.gif)
-<br/>
-![CRPixellatedView-demo3](http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView_demo3.gif)
 
 Demo
 ----------
