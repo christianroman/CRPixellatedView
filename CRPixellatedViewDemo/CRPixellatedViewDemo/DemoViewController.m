@@ -44,8 +44,8 @@
     
     
      CRPixellatedView *pixellatedView2 = [[CRPixellatedView alloc] initWithFrame:CGRectMake(0, 50, 320, 320)];
-     pixellatedView2.image = [UIImage imageNamed:@"Image2"];
-     pixellatedView2.pixelScale = 20.0f;
+     pixellatedView2.image = [UIImage imageNamed:@"Image5"];
+     pixellatedView2.pixelScale = 30.0f;
      pixellatedView2.animationDuration = 4.0f;
      pixellatedView2.reverse = NO;
      [self.view addSubview:pixellatedView2];

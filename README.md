@@ -74,13 +74,18 @@ pixellatedView.reverse = YES; // Reverse effect
 Example
 ----------
 
-![CRPixellatedView-demo1](http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView_demo1.gif)
-<br/>
 ```objc
 pixellatedView.reverse = YES; // Reverse effect
 ```
+![CRPixellatedView-demo1](http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView_demo1.gif)
+<br/>
 ![CRPixellatedView-demo2](http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView_demo2.gif)
-
+<br/>
+```objc
+pixellatedView.reverse = NO; // (default)
+pixellatedView.pixelScale = 30.0f;
+```
+![CRPixellatedView-demo3](http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView_demo3.gif)
 Demo
 ----------
 See CRPixelledViewDemo Xcode project.
