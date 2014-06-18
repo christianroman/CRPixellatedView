@@ -71,13 +71,14 @@ pixellatedView.reverse = YES; // Reverse effect
 }
 ```
 
-Example
+Examples
 ----------
 
 ```objc
 pixellatedView.reverse = YES; // Reverse effect
 ```
 ![CRPixellatedView-demo1](http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView_demo1.gif)
+<br/>
 <br/>
 ![CRPixellatedView-demo2](http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView_demo2.gif)
 <br/>
