@@ -27,7 +27,9 @@ pod 'CRPixellatedView'
 
 **Source files**
 
-Just clone this repository or download it in zip-file. Then you will find source files under **CRPixellatedView** directory. Copy them to your project.
+Just clone this repository or download it in zip-file.
+Then you will find source files under **CRPixellatedView** directory.
+Copy them to your project.
 
 Usage
 -----
