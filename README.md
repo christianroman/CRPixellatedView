@@ -2,9 +2,9 @@ CRPixellatedView
 =======================
 Custom `UIView` subclass with a cool pixellated animation inspired by [Facebook's Slingshot][4].
 
-[![License MIT](https://go-shields.herokuapp.com/license-MIT-blue.png)](https://github.com/chroman/CRPixellatedView/blob/master/LICENSE)
-[![Build Platform](https://cocoapod-badges.herokuapp.com/p/CRPixellatedView/badge.png)](http://cocoapods.org/?q=CRPixellatedView)
-[![Build Version](https://cocoapod-badges.herokuapp.com/v/CRPixellatedView/badge.png)](http://cocoapods.org/?q=CRPixellatedView)
+[![License](https://img.shields.io/cocoapods/l/CRPixellatedView.svg?style=flat)](http://cocoadocs.org/docsets/CRPixellatedView)
+[![Platform](https://img.shields.io/cocoapods/p/CRPixellatedView.svg?style=flat)](http://cocoadocs.org/docsets/CRPixellatedView)
+[![Version](https://img.shields.io/cocoapods/v/CRPixellatedView.svg?style=flat)](http://cocoadocs.org/docsets/CRPixellatedView)
 [![Build Status](https://travis-ci.org/chroman/CRPixellatedView.png?branch=master)](https://travis-ci.org/chroman/CRPixellatedView)
 
 <img src="http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView.gif" width="320">
@@ -79,6 +79,10 @@ Example
 ![CRPixellatedView-demo2](http://chroman.me/wp-content/uploads/2014/02/CRPixellatedView_demo2.gif)
 <br/>
 ![CRPixellatedView-demo3](http://chroman.me/wp-content/uploads/2014/02/CRPixellatedView_demo3.gif)
+
+Demo
+----------
+See CRPixelledViewDemo Xcode project.
 
 Requirements
 ----------
