@@ -58,7 +58,7 @@ pixellatedView.animationDuration = 0.8f;
 }];
 ```
 
-Also, you can customize the effect using the `reverse` property:
+Also, you can customize the animation effect using the `reverse` property:
 ```objc
 CRPixellatedView *pixellatedView2 = [[CRPixellatedView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
 pixellatedView.image = [UIImage imageNamed:@"Image"];
