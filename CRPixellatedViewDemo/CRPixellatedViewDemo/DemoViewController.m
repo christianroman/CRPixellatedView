@@ -28,35 +28,31 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor blackColor];
-    
-    CRPixellatedView *pixellatedView = [[CRPixellatedView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-    pixellatedView.image = [UIImage imageNamed:@"Image"];
-    [self.view addSubview:pixellatedView];
-    [pixellatedView animate];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     /*
-    CRPixellatedView *pixellatedView = [[CRPixellatedView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+    CRPixellatedView *pixellatedView = [[CRPixellatedView alloc] initWithFrame:CGRectMake(0, 50, 320, 320)];
     pixellatedView.image = [UIImage imageNamed:@"Image"];
     pixellatedView.pixelScale = 20.0f;
-    pixellatedView.animationDuration = 0.8f;
+    pixellatedView.animationDuration = 4.0f;
     [self.view addSubview:pixellatedView];
+    
     [pixellatedView animateWithCompletion:^(BOOL finished) {
         NSLog(@"completed");
     }];
      */
     
-    /*
-     CRPixellatedView *pixellatedView2 = [[CRPixellatedView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
-     pixellatedView2.image = [UIImage imageNamed:@"Image3"];
+    
+     CRPixellatedView *pixellatedView2 = [[CRPixellatedView alloc] initWithFrame:CGRectMake(0, 50, 320, 320)];
+     pixellatedView2.image = [UIImage imageNamed:@"Image2"];
      pixellatedView2.pixelScale = 20.0f;
-     pixellatedView2.animationDuration = 0.8f;
-     pixellatedView2.reverse = YES;
+     pixellatedView2.animationDuration = 4.0f;
+     pixellatedView2.reverse = NO;
      [self.view addSubview:pixellatedView2];
      [pixellatedView2 animateWithCompletion:^(BOOL finished) {
      NSLog(@"completed");
      }];
-    */
+    
 }
 
 - (void)didReceiveMemoryWarning

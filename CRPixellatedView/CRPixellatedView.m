@@ -228,6 +228,7 @@
     
     _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(pixellate)];
     [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    _displayLink.frameInterval = 20;
 }
 
 - (void)pixellate
