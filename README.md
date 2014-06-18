@@ -67,7 +67,7 @@ pixellatedView.reverse = YES; // Reverse effect
 [self.view addSubview:pixellatedView2]; // Add to your view
 [pixellatedView animateWithCompletion:^(BOOL finished) {
 	NSLog(@"completed");
-}
+}];
 ```
 
 Examples
