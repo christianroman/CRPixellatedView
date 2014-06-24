@@ -1,10 +1,11 @@
 CRPixellatedView
 =======================
-Custom `UIView` subclass with a cool pixellated animation inspired by [Facebook's Slingshot][4].
+Custom `UIView` subclass with a pixellated animation inspired by [Facebook's Slingshot][4] app.
 
 [![License](https://img.shields.io/cocoapods/l/CRPixellatedView.svg?style=flat)](http://cocoadocs.org/docsets/CRPixellatedView)
 [![Platform](https://img.shields.io/cocoapods/p/CRPixellatedView.svg?style=flat)](http://cocoadocs.org/docsets/CRPixellatedView)
 [![Version](https://img.shields.io/cocoapods/v/CRPixellatedView.svg?style=flat)](http://cocoadocs.org/docsets/CRPixellatedView)
+[![CI](http://img.shields.io/travis/chroman/CRPixellatedView.svg?style=flat)]
 
 <img src="http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView.gif" width="320">
 
@@ -59,12 +60,12 @@ pixellatedView.animationDuration = 0.8f;
 
 Also, you can customize the animation effect using the `reverse` property:
 ```objc
-CRPixellatedView *pixellatedView2 = [[CRPixellatedView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
+CRPixellatedView *pixellatedView = [[CRPixellatedView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
 pixellatedView.image = [UIImage imageNamed:@"Image"];
 pixellatedView.pixelScale = 20.0f;
 pixellatedView.animationDuration = 0.8f;
 pixellatedView.reverse = YES; // Reverse effect
-[self.view addSubview:pixellatedView2]; // Add to your view
+[self.view addSubview:pixellatedView]; // Add to your view
 [pixellatedView animateWithCompletion:^(BOOL finished) {
 	NSLog(@"completed");
 }];
