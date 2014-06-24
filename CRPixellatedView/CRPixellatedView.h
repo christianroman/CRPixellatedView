@@ -18,6 +18,11 @@
 
 @property (nonatomic, assign) UIViewContentMode imageContentMode;
 
+/**
+ *  NSDefaultRunLoopMode or NSRunLoopCommonModes, default is NSRunLoopCommonModes
+ */
+@property (nonatomic, copy) NSString *runLoopCommonMode;
+
 - (void)animate;
 - (void)animateWithCompletion:(void (^)(BOOL finished))completion;
 

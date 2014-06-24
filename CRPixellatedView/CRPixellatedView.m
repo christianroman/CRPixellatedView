@@ -67,6 +67,7 @@
     self.startInputScale = 0.0f;
     self.endInputScale = self.pixelScale;
     self.imageContentMode = UIViewContentModeScaleAspectFit;
+    self.runLoopCommonMode = NSRunLoopCommonModes;
 }
 
 - (void)setup
@@ -227,7 +228,7 @@
     _animationToValue = 1.0f;
     
     _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(pixellate)];
-    [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:self.runLoopCommonMode];
 }
 
 - (void)pixellate
@@ -238,7 +239,7 @@
         [self setNeedsDisplay];
         if (t > 1.0) {
             //[_displayLink invalidate];
-            [self.displayLink removeFromRunLoop:NSRunLoop.mainRunLoop forMode:NSRunLoopCommonModes];
+            [self.displayLink removeFromRunLoop:NSRunLoop.mainRunLoop forMode:self.runLoopCommonMode];
             self.displayLink = nil;
             if (_completion) {
                 _completion(YES);
