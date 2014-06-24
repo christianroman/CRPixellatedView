@@ -5,7 +5,7 @@ Custom `UIView` subclass with a pixellated animation inspired by [Facebook's Sli
 [![License](https://img.shields.io/cocoapods/l/CRPixellatedView.svg?style=flat)](http://cocoadocs.org/docsets/CRPixellatedView)
 [![Platform](https://img.shields.io/cocoapods/p/CRPixellatedView.svg?style=flat)](http://cocoadocs.org/docsets/CRPixellatedView)
 [![Version](https://img.shields.io/cocoapods/v/CRPixellatedView.svg?style=flat)](http://cocoadocs.org/docsets/CRPixellatedView)
-[![CI](http://img.shields.io/travis/chroman/CRPixellatedView.svg?style=flat)]
+[![CI](http://img.shields.io/travis/chroman/CRPixellatedView.svg?style=flat)](https://travis-ci.org/chroman/CRPixellatedView)
 
 <img src="http://chroman.me/wp-content/uploads/2014/06/CRPixellatedView.gif" width="320">
 
