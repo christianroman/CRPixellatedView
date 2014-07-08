@@ -93,11 +93,11 @@ See CRPixelledViewDemo Xcode project.
 
 Requirements
 ----------
-* iOS 6.0 or higher for Objective-C.
+* iOS 6.0 or higher.
 
 Bugs
 ----------
-* Working well just with square images :(
+* It works well just with square images (CIFilter related bug) :(
 
 Contributing
 ----------
