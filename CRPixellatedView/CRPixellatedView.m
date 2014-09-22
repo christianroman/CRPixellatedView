@@ -296,6 +296,8 @@
     
     [_imageView setImage:[UIImage imageWithCGImage:imgRef]];
     
+    CGImageRelease(imgRef);
+    
     [super drawRect:rect];
 }
 
