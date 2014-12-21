@@ -190,7 +190,7 @@
                                                 CGImageGetBitsPerComponent(imageRef),
                                                 0,
                                                 CGImageGetColorSpace(imageRef),
-                                                kCGImageAlphaNoneSkipLast);
+                                                CGImageGetBitmapInfo(imageRef));
     
     CGContextConcatCTM(bitmap, transform);
     CGContextSetInterpolationQuality(bitmap, quality);
