@@ -87,12 +87,16 @@
 - (void)setImage:(UIImage *)image
 {
     _image = image;
-    
-    _inputImage = [self resizeImage:_image
-                        contentMode:_imageContentMode
-                             bounds:_imageView.bounds.size
-               interpolationQuality:kCGInterpolationHigh];
-    
+  
+    if (_image) {
+      _inputImage = [self resizeImage:_image
+                          contentMode:_imageContentMode
+                               bounds:_imageView.bounds.size
+                 interpolationQuality:kCGInterpolationHigh];
+    } else {
+      _inputImage = nil;
+    }
+  
     [_imageView setImage:_inputImage];
     [self setNeedsDisplay];
 }
