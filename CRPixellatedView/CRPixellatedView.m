@@ -77,9 +77,6 @@
     _imageView.contentMode = _imageContentMode;
     _imageView.frame = self.bounds;
     [self addSubview:_imageView];
-    
-    //Layout
-    [self layoutSubviews];
 }
 
 #pragma mark Appearance
@@ -87,17 +84,7 @@
 - (void)setImage:(UIImage *)image
 {
     _image = image;
-  
-    if (_image) {
-      _inputImage = [self resizeImage:_image
-                          contentMode:_imageContentMode
-                               bounds:_imageView.bounds.size
-                 interpolationQuality:kCGInterpolationHigh];
-    } else {
-      _inputImage = nil;
-    }
-  
-    [_imageView setImage:_inputImage];
+    
     [self setNeedsDisplay];
 }
 
@@ -257,6 +244,11 @@
 {
     [super layoutSubviews];
     _imageView.frame = self.bounds;
+    
+    _inputImage = [self resizeImage:_image
+                        contentMode:_imageContentMode
+                             bounds:_imageView.bounds.size
+               interpolationQuality:kCGInterpolationHigh];
 }
 
 #pragma mark - Drawing
@@ -299,7 +291,6 @@
     CGImageRef imgRef = [context createCGImage:image fromRect:image.extent];
     
     [_imageView setImage:[UIImage imageWithCGImage:imgRef]];
-    
     CGImageRelease(imgRef);
     
     [super drawRect:rect];
