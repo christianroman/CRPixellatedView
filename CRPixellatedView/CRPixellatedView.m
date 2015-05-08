@@ -11,12 +11,11 @@
 @interface CRPixellatedView ()
 
 @property (nonatomic, assign) CGFloat filterProgress;
-@property (nonatomic, strong) UIImage *inputImage;
 
 @property (nonatomic, assign) CGFloat startInputScale;
 @property (nonatomic, assign) CGFloat endInputScale;
+@property (nonatomic, strong) UIImage *resizedImage;
 
-@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) CADisplayLink *displayLink;
 @property (nonatomic, assign) CGFloat animationFromValue;
 @property (nonatomic, assign) CGFloat animationToValue;
@@ -28,8 +27,7 @@
 
 @implementation CRPixellatedView
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         [self defaults];
@@ -38,8 +36,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         
@@ -49,8 +46,7 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
-{
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self defaults];
@@ -59,10 +55,9 @@
     return self;
 }
 
-- (void)defaults
-{
+- (void)defaults {
     self.backgroundColor = [UIColor clearColor];
-    self.animationDuration = 1.0f;
+    self.pixelateAnimationDuration = 1.0f;
     self.pixelScale = 20.0f;
     self.startInputScale = 0.0f;
     self.endInputScale = self.pixelScale;
@@ -70,20 +65,14 @@
     self.runLoopCommonMode = NSRunLoopCommonModes;
 }
 
-- (void)setup
-{
+- (void)setup {
     //Set up the view
-    _imageView = [[UIImageView alloc] init];
-    _imageView.contentMode = _imageContentMode;
-    _imageView.frame = self.bounds;
-    [self addSubview:_imageView];
 }
 
 #pragma mark Appearance
 
-- (void)setImage:(UIImage *)image
-{
-    _image = image;
+- (void)setInputImage:(UIImage *)inputImage {
+    _inputImage = inputImage;
     
     [self setNeedsDisplay];
 }
@@ -191,71 +180,69 @@
     return newImage;
 }
 
-- (void)setPixelScale:(CGFloat)pixelScale
-{
+- (void)setPixelScale:(CGFloat)pixelScale {
     _pixelScale = pixelScale;
     _endInputScale = _pixelScale;
 }
 
 #pragma mark - Actions
 
-- (void)animate
-{
+- (void)animate {
     [self startAnimation];
 }
 
-- (void)animateWithCompletion:(void (^)(BOOL finished))completion
-{
+- (void)animateWithCompletion:(void (^)(BOOL finished))completion {
     self.completion = completion;
     [self startAnimation];
 }
 
-- (void)startAnimation
-{
+- (void)startAnimation {
     _filterProgress = 0.0f;
     
     _animationStartTime = CACurrentMediaTime();
     _animationFromValue = _filterProgress;
     _animationToValue = 1.0f;
     
-    _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(pixellate)];
-    [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:self.runLoopCommonMode];
+    self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(animateStep)];
+    [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:self.runLoopCommonMode];
 }
 
-- (void)pixellate
-{
+- (void)animateStep {
+    __block CRPixellatedView *blockSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        CGFloat t = (_displayLink.timestamp - _animationStartTime) / _animationDuration;
-        _filterProgress = _animationFromValue + t * (_animationToValue - _animationFromValue);
-        [self setNeedsDisplay];
+        CRPixellatedView *strongSelf = blockSelf;
+        CGFloat t = (strongSelf.displayLink.timestamp - strongSelf.animationStartTime) / strongSelf.pixelateAnimationDuration;
+        strongSelf.filterProgress = strongSelf.animationFromValue + t * (strongSelf.animationToValue - strongSelf.animationFromValue);
+        [strongSelf issuePixelate];
         if (t > 1.0) {
-            //[_displayLink invalidate];
-            [self.displayLink removeFromRunLoop:NSRunLoop.mainRunLoop forMode:self.runLoopCommonMode];
-            self.displayLink = nil;
-            if (_completion) {
-                _completion(YES);
+            [strongSelf.displayLink removeFromRunLoop:NSRunLoop.mainRunLoop forMode:strongSelf.runLoopCommonMode];
+            strongSelf.displayLink = nil;
+            if (strongSelf.completion) {
+                strongSelf.completion(YES);
             }
         }
     });
 }
 
+-(void) issuePixelate {
+    UIImage *pixelatedImage = [self pixelate];
+    self.image = pixelatedImage;
+}
+
 #pragma mark - Layout
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
     [super layoutSubviews];
-    _imageView.frame = self.bounds;
-    
-    _inputImage = [self resizeImage:_image
-                        contentMode:_imageContentMode
-                             bounds:_imageView.bounds.size
+    self.resizedImage = [self resizeImage:self.inputImage
+                        contentMode:self.imageContentMode
+                             bounds:self.bounds.size
                interpolationQuality:kCGInterpolationHigh];
+    [self issuePixelate];
 }
 
 #pragma mark - Drawing
 
-- (void)drawRect:(CGRect)rect
-{
-    CIImage *image = [CIImage imageWithCGImage:_inputImage.CGImage];
+- (UIImage *)pixelate {
+    CIImage *image = [CIImage imageWithCGImage:self.resizedImage.CGImage];
     
     // Affine
     CIFilter *affineClampFilter = [CIFilter filterWithName:@"CIAffineClamp"];
@@ -283,17 +270,17 @@
     CIFilter *cropFilter = [CIFilter filterWithName: @"CICrop"];
     [cropFilter setDefaults];
     [cropFilter setValue:pixellateFilter.outputImage forKey:kCIInputImageKey];
-    [cropFilter setValue:[CIVector vectorWithX:0 Y:0 Z:_inputImage.size.width W:_inputImage.size.height] forKey:@"inputRectangle"];
+    [cropFilter setValue:[CIVector vectorWithX:0 Y:0 Z:self.resizedImage.size.width W:self.resizedImage.size.height] forKey:@"inputRectangle"];
     
     image = [cropFilter valueForKey:kCIOutputImageKey];
     
     CIContext *context = [CIContext contextWithOptions:nil];
     CGImageRef imgRef = [context createCGImage:image fromRect:image.extent];
     
-    [_imageView setImage:[UIImage imageWithCGImage:imgRef]];
+    UIImage *pixelatedImage = [UIImage imageWithCGImage:imgRef];
     CGImageRelease(imgRef);
     
-    [super drawRect:rect];
+    return pixelatedImage;
 }
 
 @end

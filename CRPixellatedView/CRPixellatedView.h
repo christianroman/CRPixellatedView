@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CRPixellatedView : UIView
+@interface CRPixellatedView : UIImageView
 
 @property (nonatomic, assign) CGFloat pixelScale;
-@property (nonatomic, assign) CGFloat animationDuration;
+@property (nonatomic, assign) CGFloat pixelateAnimationDuration;
 
-@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) UIImage *inputImage;
 @property (nonatomic, assign, getter = isReverse) BOOL reverse;
 
 @property (nonatomic, assign) UIViewContentMode imageContentMode;
